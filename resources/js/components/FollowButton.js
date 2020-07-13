@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-function FollowButton(props) {
+function FollowButton({ userId, follows }) {
+    const [status, setStatus] = useState(follows == 1 ? true : false);
     const followUser = () => {
-        axios.post('/follow/' + props.userId)
+        axios.post('/follow/' + userId)
             .then(response => {
-                console.log(response.data);
+                setStatus(!status);
+            })
+            .catch(errors => {
+                if(errors.response.status == 401) {
+                    window.location = '/login';
+                }
             })
     }
     return (
-        <button className="btn btn-primary ml-4" onClick={followUser}>Follow</button>
+        <button className="btn btn-primary ml-4" onClick={followUser}>{status ? 'Unfollow' : 'Follow'}</button>
     );
 }
 
