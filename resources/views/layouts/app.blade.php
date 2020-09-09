@@ -53,8 +53,13 @@
                         @endif
                         @else
                         <li class="nav-item">
+                            <a class="nav-link" href="/search">All profiles</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/profile/{{ Auth::user()->id }}">{{ Auth::user()->username }}</a>
                         </li>
+
                         <li class="nav-item dropdown d-flex">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Settings<span class="caret"></span>
